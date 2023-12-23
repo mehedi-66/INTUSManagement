@@ -3,13 +3,41 @@
 
 <div class="row">
     <h3>Create Element</h3>
-    <p>Work with form </p>
+    <EditForm Model="_element" OnSubmit="Create" class="card mt-1">
+        <div class="row">
+            <div class="col-4">
+                <label for="name" class="col-md-2 col-form-label">Type:</label>
+                <div class="col-md-10">
+                    <InputText class="form-control" @bind-Value="_element.Type" />
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="name" class="col-md-2 col-form-label">Width:</label>
+                <div class="col-md-10">
+                    <InputNumber class="form-control" @bind-Value="_element.Width" />
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="name" class="col-md-2 col-form-label">Heigth:</label>
+                <div class="col-md-10">
+                    <InputNumber class="form-control" @bind-Value="_element.Height" />
+                </div>
+            </div>
+        </div>
+       
+       
+        <div class="row mt-1 mb-2">
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-success">Create</button>
+            </div>
+        </div>
+    </EditForm>
 </div>
 
 @if(Elements != null)
 {
-    <div class="row">
-        <table class="table">
+    <div class="card row mt-2 p-3">
+        <table class="table table-striped">
             <tr>
                 <th>Type</th>
                 <th>Width</th>
@@ -23,7 +51,10 @@
                     <td>@item.Type</td>
                     <td>@item.Width</td>
                     <td>@item.Height</td>
-                    <td>Edit | Delete</td>
+                    <td>
+                        <a href="" style="background-color: #003adf" class="btn btn-primary">Edit</a>
+                        <a href="" style="background-color: red" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             }
 
