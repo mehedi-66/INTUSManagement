@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <ProjectReference Include="..\INTUSManagement.Model\INTUSManagement.Model.csproj" />
   </ItemGroup>
 
 </Project>

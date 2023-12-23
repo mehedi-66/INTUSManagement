@@ -1,0 +1,38 @@
+﻿@page "/Element"
+@inherits ElementBase
+
+<div class="row">
+    <h3>Create Element</h3>
+    <p>Work with form </p>
+</div>
+
+@if(Elements != null)
+{
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>Type</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Elements)
+            {
+                <tr>
+                    <td>@item.Type</td>
+                    <td>@item.Width</td>
+                    <td>@item.Height</td>
+                    <td>Edit | Delete</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+}
+else
+{
+   <img style="width: 15%" src="img/loading.gif" />
+}
