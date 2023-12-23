@@ -16,7 +16,7 @@ namespace INTUSManagement.Model
         }
 
         [Key]
-        private int WindowId { get; set; }
+        public int WindowId { get; set; }
         private string Name {get; set;}
         private int QuantityOfWindows { get; set;}
 

@@ -10,7 +10,7 @@ namespace INTUSManagement.Model
     public class Element
     {
         [Key]
-        private int ElementId { get; set; }
+        public int ElementId { get; set; }
         private string Type { get; set; }
         private float Width { get; set; }
         private float Height { get; set; }

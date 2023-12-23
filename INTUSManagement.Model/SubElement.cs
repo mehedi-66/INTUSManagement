@@ -12,7 +12,7 @@ namespace INTUSManagement.Model
     {
 
         [Key]
-        private int SubElementId { get; set; }
+        public int SubElementId { get; set; }
         private string Type { get; set; }
         private float Width { get; set; }
         private float Height { get; set; }
