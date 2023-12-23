@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,12 @@ namespace INTUSManagement.Model
 {
     public class Window
     {
+        public Window()
+        {
+            this.SubElements = new List<SubElement>();
+        }
+
+        [Key]
         private int WindowId { get; set; }
         private string Name {get; set;}
         private int QuantityOfWindows { get; set;}
