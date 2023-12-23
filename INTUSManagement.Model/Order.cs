@@ -9,10 +9,14 @@ namespace INTUSManagement.Model
         }
         [Key]
         public int OrderId { get; set; }
-        private string Name {get; set;}
-        private string State { get; set;}
 
-        private List<Window> Windows { get; set;}
+        [Required]
+        public string Name {get; set;}
+
+        [Required]
+        public string State { get; set;}
+
+        public List<Window> Windows { get; set;}
 
     }
 }

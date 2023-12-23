@@ -1,0 +1,179 @@
+﻿@page "/CreateOrder"
+@inherits OrderBase
+
+<div class="row">
+    <h3>Create Order</h3>
+    <EditForm Model="_order" OnSubmit="CreateOrder" class="card mt-1 mb-2">
+        <div class="row mb-1">
+            <div class="col-4">
+                <label for="name" >Name:</label>
+                <div >
+                    <InputText class="form-control" @bind-Value="_order.Name" />
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="name" >State:</label>
+                <div >
+                    <InputText class="form-control" @bind-Value="_order.State" />
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div>
+                    <button type="submit" class="btn btn-success">Confirm Order</button>
+                </div>
+            </div>
+        </div>
+    </EditForm> 
+
+    @if(createWindowBtn == false)
+    {
+        <div class="row">
+            <div class="col-2">
+                <button type="button" class="btn btn-success" @onclick="openWindowFrom">Create Window</button>
+            </div>
+        </div>
+        
+    }
+    else
+    {
+        <EditForm Model="_window" OnSubmit="CreateWindow" class="card mt-1 mb-2">
+            <div class="row mb-1">
+                <div class="col-3">
+                    <label for="name">Name:</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="_window.Name" />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label for="name">Quantity:</label>
+                    <div>
+                        <InputNumber class="form-control" @bind-Value="_window.QuantityOfWindows" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <label for="name">Total Sub Elements:</label>
+                    <div>
+                        <InputNumber class="form-control" @bind-Value="_window.TotalSubElements" />
+                    </div>
+                </div>
+                <div class="col-2 mt-3">
+                    <div>
+                        <button type="submit" class="btn btn-success">Added Window</button>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+
+    }
+    
+    @if(createElementBtn == false)
+    {
+    }
+    else
+    {
+        @if (elements != null)
+        {
+            <EditForm Model="_subElement" OnSubmit="CreateSubElement" class="card mt-1">
+                <div class="row">
+                    <div class="col-4">
+                        <label for="name">Type:</label>
+                        <div>
+                            <select class="form-control" @onchange="OnSelectionChange">
+                                @foreach (var e in elements)
+                                {
+                                    <option value="@e.ElementId">@($"{e.Type}, {e.Width}, {e.Height}")</option>
+                                }
+                            </select>
+                            @*  <InputText class="form-control" @bind-Value="_subElement.Type" /> *@
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <label for="name">Width:</label>
+                        <div>
+                            <InputNumber class="form-control" @bind-Value="_subElement.Width" />
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <label for="name">Height:</label>
+                        <div>
+                            <InputNumber class="form-control" @bind-Value="_subElement.Height" />
+                        </div>
+                    </div>
+                    <div class="col-4 mt-3">
+                        <div>
+                            <button type="submit" class="btn btn-success">Added SubElement</button>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        }
+
+    }
+
+
+    
+
+    @if(_window != null && createWindowBtn == true && _window.SubElements.Count > 0)
+    {
+
+        <div class="card mt-3 w-50">
+            <div class="row">
+            <h6>Current Window</h6>
+            <div class="col-3">Name: @_window.Name</div>
+            <div class="col-3">Quntity: @_window.QuantityOfWindows</div>
+            <div class="col-3">Sub Element: @countElement</div>
+            <div class="col-3"></div>
+
+            <div class="col-12 mt-2 mb-2">Sub Elements Inserted</div>
+            <div class="col-3"></div>
+            <div class="col-3">Type</div>
+            <div class="col-3">Width</div>
+            <div class="col-3">Height</div>
+            @foreach (var item in _window.SubElements)
+            {
+                <div class="col-3"></div>
+                <div class="col-3">@item.Type</div>
+                <div class="col-3">@item.Width</div>
+                <div class="col-3">@item.Height</div>
+            }
+            </div>
+        </div>
+    }
+
+
+    @if (_order.Windows.Count > 0)
+    {
+
+        <div class="card mt-3 w-75">
+
+            @foreach (var window in _order.Windows)
+            {
+                <div class="row">
+                    <h6>Window </h6>
+                    <div class="col-3">Name: @window.Name</div>
+                    <div class="col-3">Quntity: @window.QuantityOfWindows</div>
+                    <div class="col-3">Sub Element: @window.TotalSubElements</div>
+                    <div class="col-3"></div>
+
+                    <div class="col-12 mt-2 mb-2">Sub Elements</div>
+                    <div class="col-3"></div>
+                    <div class="col-3">Type</div>
+                    <div class="col-3">Width</div>
+                    <div class="col-3">Height</div>
+                    @foreach (var item in window.SubElements)
+                    {
+                        <div class="col-3"></div>
+                        <div class="col-3">@item.Type</div>
+                        <div class="col-3">@item.Width</div>
+                        <div class="col-3">@item.Height</div>
+                    }
+                </div>
+                <hr />
+            }
+           
+        </div>
+    }
+
+</div>
+
+

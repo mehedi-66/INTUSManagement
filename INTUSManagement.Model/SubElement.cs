@@ -13,11 +13,14 @@ namespace INTUSManagement.Model
 
         [Key]
         public int SubElementId { get; set; }
-        private string Type { get; set; }
-        private float Width { get; set; }
-        private float Height { get; set; }
-
+        [Required]
+        public string Type { get; set; }
+        [Required]
+        public float Width { get; set; }
+        [Required]
+        public float Height { get; set; }
+        [Required]
         [ForeignKey("Window")]
-        private int WindowId { get; set; }
+        public int WindowId { get; set; }
     }
 }
