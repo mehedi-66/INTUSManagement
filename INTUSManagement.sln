@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INTUSBlazorWebAssemblyApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INTUSManagement.Model", "INTUSManagement.Model\INTUSManagement.Model.csproj", "{43FB8FFE-B1BB-4B5F-9FC3-28CA43B72F9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INTUSManagement.API", "INTUSManagement.API\INTUSManagement.API.csproj", "{7936AD7A-CE67-45CE-892B-0852B8469FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INTUSManagement.API", "INTUSManagement.API\INTUSManagement.API.csproj", "{7936AD7A-CE67-45CE-892B-0852B8469FB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

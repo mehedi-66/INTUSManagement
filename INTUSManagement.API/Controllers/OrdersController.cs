@@ -23,13 +23,43 @@ namespace INTUSManagement.API.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
+        public ActionResult<IEnumerable<Order>> GetOrder()
         {
-            if (_context.Orders == null)
+            try
             {
-                return NotFound();
+                List<Order> orders = _context.Orders.ToList();
+
+                if (orders == null || !orders.Any())
+                {
+                    return NotFound();
+                }
+
+                foreach (var ord in orders)
+                {
+                    List<Window> windows = (from win in _context.Windows
+                                            where win.OrderId == ord.OrderId
+                                            select new Window
+                                            {
+                                                WindowId = win.WindowId,
+                                                Name  = win.Name,
+                                                QuantityOfWindows = win.QuantityOfWindows,
+                                                TotalSubElements = win.TotalSubElements,
+
+                                                SubElements = _context.SubElements
+                                                    .Where(sub => sub.WindowId == win.WindowId)
+                                                    .ToList()
+
+                                            }).ToList();
+
+                    ord.Windows = windows;
+                }
+
+                return orders;
             }
-            return await _context.Orders.ToListAsync();
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         // GET: api/Orders/5

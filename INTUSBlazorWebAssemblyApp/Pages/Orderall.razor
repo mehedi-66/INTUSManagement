@@ -1,0 +1,74 @@
+﻿@page "/AllOrders"
+@inherits OrdersallBase
+
+
+ <div class="row">
+    <h5>See All Orders</h5>
+    @if (Orders.Count > 0)
+    {
+
+        <div class="card mt-3">
+            @foreach (var ord in Orders)
+            {
+                <div class="row p-3">
+
+
+                    <h6><b>Order</b> </h6>
+                    <div class="col-1"></div>
+                    <div class="col-3">Name: @ord.Name</div>
+                    <div class="col-3">State: @ord.State</div>
+                    <div class="col-2"></div>
+                    <div class="col-3 mb-2">
+                        <button type="submit" class="btn btn-sm btn-success">Edit Order</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Delete Order</button>
+                    </div>
+                    
+                    @foreach (var window in ord.Windows)
+                    {
+
+                        <h6 class="mx-3 my-2"><b>Window</b> </h6>
+                        <div class="col-1"></div>
+                       
+                        <div class="col-3">Name: @window.Name</div>
+                        <div class="col-3">Quntity: @window.QuantityOfWindows</div>
+                        <div class="col-2">Sub Element: @window.TotalSubElements</div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-sm btn-success">Edit Window</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Delete Window</button>
+                        </div>
+
+                        <h6 class="mx-5 my-2"><b>Sub Elements</b> </h6>
+                      
+                        <div class="col-1"></div>
+                        <div class="col-2"><b>Type</b></div>
+                        <div class="col-2"><b>Width</b></div>
+                        <div class="col-2"><b>Height</b></div>
+                        <div class="col-2"></div>
+                        <div class="col-3"></div>
+                        @foreach (var item in window.SubElements)
+                        {
+                            <div class="col-1"></div>
+                            <div class="col-2">@item.Type</div>
+                            <div class="col-2">@item.Width</div>
+                            <div class="col-2">@item.Height</div>
+                            <div class="col-3 mb-1">
+                                <button type="submit" class="btn btn-sm btn-success">Edit Element</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete Element</button>
+                            </div>
+                            <div class="col-2"></div>
+                        }
+
+                    }
+
+                </div>
+                <hr />
+
+            }
+
+
+        </div>
+    }
+
+
+</div>
+
